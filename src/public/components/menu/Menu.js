@@ -2,7 +2,7 @@ export function Menu([fn]){
     let divMenu = document.createElement('div')
 
     let contentMenu = `
-        hola
+        hol
     `
     divMenu.innerHTML = contentMenu
 
