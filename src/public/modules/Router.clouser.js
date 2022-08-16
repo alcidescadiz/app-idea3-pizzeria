@@ -11,8 +11,8 @@ let Router = () => {
 
     /**
      * @name isLogin
-     * @type {{status:boolean|null, token:string}} */
-    let isLogin = { status: null, token: "" };
+     * @type {{status:boolean|null,name:string,token:string}} */
+    let isLogin = { status: null,name:"", token: "" };
 
     /**@type {Array<any>} */
     let Routes = [];

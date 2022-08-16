@@ -2,7 +2,7 @@ export function LoginPage([fn]){
     let divLogin = document.createElement('div')
 
     let contentLogin = `
-        hola
+        logiin
     `
     divLogin.innerHTML = contentLogin
 
