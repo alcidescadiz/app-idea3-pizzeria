@@ -8,7 +8,7 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js"
   },
-  "keywords": [],
+  "keywords": ["restaurant", "pizzeria"],
   "author": "Ing Alcides Cádiz",
   "license": "ISC",
   "dependencies": {
