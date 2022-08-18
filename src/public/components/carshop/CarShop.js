@@ -1,5 +1,5 @@
 export function CarShop([fn]){
-    let {car} = fn()
+    let {car, name} = fn()
     let mainCarShop = document.createElement('main')
     mainCarShop.classList.add('car-shop', "pb-5", "container")
     let listCardShop= car.map((e,i)=>{
@@ -53,6 +53,17 @@ export function CarShop([fn]){
                 date: new Intl.DateTimeFormat('es').format(new Date())
             }
             console.log(dataToConfirm)
+            fetch(window.location.origin + "/v1-api/invoice",{
+                body: JSON.stringify(dataToConfirm),
+                method:"POST",
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            }) 
+            .then((res) => res.json())
+            .then((json) => {
+              console.log(json)
+            });
         })
     },10)
 

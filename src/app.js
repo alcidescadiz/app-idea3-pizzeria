@@ -24,7 +24,10 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 /** Middleware APIS */
-
+import userRouter from './routes/users.routes.js'
+userRouter(app)
+import invoiceRouter from './routes/invoice.routes.js'
+invoiceRouter(app)
 
 // @ts-ignore  render de plantillas ejs
 app.get('/', (req, res)=>{

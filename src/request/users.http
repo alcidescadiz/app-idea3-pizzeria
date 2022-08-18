@@ -1,0 +1,11 @@
+@api = http://localhost:3000/v1-api/users
+@token = 
+
+
+### todos los usuarios
+GET  {{api}}/
+x-access-token : {{token}}
+
+### crear usuario
+POST  {{api}}/
+x-access-token : {{token}}

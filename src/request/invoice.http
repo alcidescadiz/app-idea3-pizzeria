@@ -1,0 +1,15 @@
+@api = http://localhost:3000/v1-api/invoice
+@token = 
+
+
+### invoice for a user
+GET  {{api}}/
+x-access-token : {{token}}
+
+### invoice for a user
+GET  {{api}}/1
+x-access-token : {{token}}
+
+### create a invocie
+POST  {{api}}/
+x-access-token : {{token}}
