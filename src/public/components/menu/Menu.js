@@ -1,7 +1,7 @@
 export function Menu([fn]){
     let headerMenu = document.createElement('header')
-    const {status, name} = fn()
-    const userAncor = `<a class="nav-link text-white " href="#user">${name}🙍‍♂️</a>`
+    const {status, user} = fn()
+    const userAncor = `<a class="nav-link text-white " href="#user">${user.name}🙍‍♂️</a>`
     const loginAncor= `<a class="nav-link text-white " href="#login">Login🔐</a>`
 
     let contentMenu = `

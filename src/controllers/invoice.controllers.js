@@ -1,39 +1,30 @@
-import { cnx } from "../config/connect-mysql.js"
+import { addInvoiceTable, allRowTable, rowTableForIdUser } from "../config/factory.mysql2.js";
 
 
-export function invoiceForUser(req, res){
+export async function invoiceForUser(req, res){
     try {
         let {id_user} = req.params
-        cnx.query(`SELECT * FROM invoice WHERE id_user=?`,[id_user], function(error, results, fields) {
-            if (error) throw error
-            res.json({msg:results})
-        });
-        cnx.end()
+        let results = await rowTableForIdUser(id_user, 'invoice')
+        res.json({msg:results})
     } catch (error) {
         res.json({error:error})
     }
 }
-export function allInvoice(req, res){
+export async function allInvoice(req, res){
     try {
-        cnx.query(`SELECT * FROM invoice`, function(error, results, fields) {
-            if (error) throw error
-            res.json({msg:results})
-        });
-        cnx.end()
+        let results = await allRowTable('invoice')
+        res.json({msg:results})
     } catch (error) {
         res.json({error:error})
     }
 }
 
-export async function createinvoice(req, res){
+export async function createInvoice(req, res){
     try {
-        let {car,totalList,date } = req.body 
-        cnx.query(`INSERT INTO invoice (id, id_user, total, date, details) VALUES (NULL, '1', '${totalList}', '${date}','${JSON.stringify(car)}')`, function(err, results, fields) {
-                if (err) throw err
-            }
-        );
-        cnx.end()
-        res.json({msg:'invoice created'})
+        let {car,id_user, totalList,date } = req.body 
+        let result = await addInvoiceTable({car,id_user, totalList,date}, 'invoice')
+        // @ts-ignore
+        res.json({msg:result.affectedRows})
     } catch (error) {
         res.json({msg:error})
     }

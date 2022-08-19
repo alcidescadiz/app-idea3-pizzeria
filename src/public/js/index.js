@@ -10,11 +10,11 @@ let {Loading, Route, Render, RenderEvent, PageNotFound, Login, appSesionStorage}
 // appSesionStorage.getSesionStorage({keyStorage:'algo', goTo:'#login'})
 // console.log(Login())
 // appSesionStorage.upateSesionStorage({ token: 'antonio', dos:'dos'},'algo')
-console.log(Login({ name: 'antonio', status:true,car:[], token: ""}))
+//console.log(Login({ name: 'antonio', status:true,car:[], token: ""}))
 
 Route({ path: null,        template: Menu,       props: [Login], protect: false  });
 Route({ path: "",          template: ListFood,   props: [Login], protect: false  });
-Route({ path: "#login",    template: LoginPage,  props: [], protect: false  });
+Route({ path: "#login",    template: LoginPage,  props: [Login], protect: false  });
 Route({ path: "#user",     template: User,       props: [], protect: false  });
 Route({ path: "#register", template: Register,   props: [], protect: false  });
 Route({ path: "#car",      template: CarShop,    props: [Login], protect: false  });

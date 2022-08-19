@@ -2,7 +2,7 @@
 @token = 
 
 
-### invoice for a user
+### invoice all
 GET  {{api}}/
 x-access-token : {{token}}
 

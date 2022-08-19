@@ -1,5 +1,9 @@
 export function CarShop([fn]){
-    let {car, name} = fn()
+    let {status, car, user} = fn()
+    if (status !== true) {
+        window.location.hash= '#login'
+        return
+    }
     let mainCarShop = document.createElement('main')
     mainCarShop.classList.add('car-shop', "pb-5", "container")
     let listCardShop= car.map((e,i)=>{
@@ -50,9 +54,13 @@ export function CarShop([fn]){
         document.getElementById("addBuyToConfirm")?.addEventListener("click", e =>{
             let dataToConfirm = {
                 car, totalList,
+                id_user: user.id,
                 date: new Intl.DateTimeFormat('es').format(new Date())
             }
-            console.log(dataToConfirm)
+            if (dataToConfirm.totalList === 0){
+                alert('No tiene pedidos a realizar')
+                return
+            }
             fetch(window.location.origin + "/v1-api/invoice",{
                 body: JSON.stringify(dataToConfirm),
                 method:"POST",
@@ -62,7 +70,11 @@ export function CarShop([fn]){
             }) 
             .then((res) => res.json())
             .then((json) => {
-              console.log(json)
+              if(json.msg === 1){
+                fn({car:[]})
+                console.log(fn())
+                window.location.hash= '#'
+              }
             });
         })
     },10)

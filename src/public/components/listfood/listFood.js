@@ -192,6 +192,11 @@ export function ListFood([fn]) {
       console.log(fn())
       // @ts-ignore ---> ADD TO CARSHOP
       document.getElementById("inputAddToCarShop").addEventListener("click", e => {
+        if(fn().status !== true){
+          window.location.hash= '#login'
+          alert('debe estar registrado para realizar pedidos')
+          return
+        }
           let data = {
             id: document.getElementById("modal-id-producto")?.innerHTML ,
             name:document.getElementById("modal-name-producto")?.innerHTML ,
