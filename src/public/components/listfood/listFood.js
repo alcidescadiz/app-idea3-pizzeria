@@ -189,7 +189,6 @@ export function ListFood([fn]) {
     </div>
     `
     setTimeout(function(){
-      console.log(fn())
       // @ts-ignore ---> ADD TO CARSHOP
       document.getElementById("inputAddToCarShop").addEventListener("click", e => {
         if(fn().status !== true){

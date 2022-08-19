@@ -15,7 +15,7 @@ let {Loading, Route, Render, RenderEvent, PageNotFound, Login, appSesionStorage}
 Route({ path: null,        template: Menu,       props: [Login], protect: false  });
 Route({ path: "",          template: ListFood,   props: [Login], protect: false  });
 Route({ path: "#login",    template: LoginPage,  props: [Login], protect: false  });
-Route({ path: "#user",     template: User,       props: [], protect: false  });
+Route({ path: "#user",     template: User,       props: [Login], protect: false  });
 Route({ path: "#register", template: Register,   props: [], protect: false  });
 Route({ path: "#car",      template: CarShop,    props: [Login], protect: false  });
 Route({ path: "#invoice",  template: Invoice,    props: [], protect: false  });
