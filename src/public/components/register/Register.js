@@ -57,7 +57,6 @@ export function Register([fn]){
                     }
                 }).then(res => res.json())
                   .then(json =>{
-                    console.log(json)
                     if(json.msg===1){
                         //@ts-ignore: Object is possibly 'null'.
                         document.getElementById("formRegister").reset()

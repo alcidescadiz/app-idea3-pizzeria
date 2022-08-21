@@ -71,6 +71,7 @@ export function LoginPage([fn]){
               }
           ).then(res => res.json())
            .then(json => {
+            console.log(json)
               if(json.msg){
                   fn({status: true, user:json.msg[0]})
                   //sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, email:json.email, like:json.like, dislike:json.dislike }))

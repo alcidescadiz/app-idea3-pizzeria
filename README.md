@@ -25,3 +25,7 @@ Frontend:
 
 * npm start
 * www.localhost:3000
+
+#### URL:
+
+* https://app-pizzeria-mysql.herokuapp.com/

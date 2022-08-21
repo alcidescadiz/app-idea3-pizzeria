@@ -1,4 +1,5 @@
-import { addUserTable, allRowTable,  rowTableForTwoWhere } from "../config/factory.mysql2.js"
+//import { addUserTable, allRowTable,  rowTableForTwoWhere } from "../config/factory.mysql2.js"
+import { addUserTable, allRowTable,  rowTableForTwoWhere } from "../config/factory.postgres.js"
 
 
 export async function allUsers(req, res){
@@ -15,7 +16,7 @@ export async function createUser(req, res){
         let {name,email,password } = req.body 
         let result = await addUserTable({name,email,password }, 'users')
         // @ts-ignore
-        res.json({msg:result.affectedRows})
+        res.json({msg:result.rowCount})
     } catch (error) {
         res.json({msg:error})
     }
