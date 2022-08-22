@@ -198,18 +198,24 @@ export function ListFood([fn,messageForm]) {
           },100)
           return
         }
-          let data = {
-            id: document.getElementById("modal-id-producto")?.innerHTML ,
-            name:document.getElementById("modal-name-producto")?.innerHTML ,
-            price:document.getElementById("modal-price-producto")?.innerHTML,
-            // @ts-ignore
-            quantity: document.getElementById("quantity")?.value
-          }
-          fn().car.push(data)
+        let data = {
+          id: document.getElementById("modal-id-producto")?.innerHTML ,
+          name:document.getElementById("modal-name-producto")?.innerHTML ,
+          price:document.getElementById("modal-price-producto")?.innerHTML,
+          // @ts-ignore
+          quantity: document.getElementById("quantity").value
+         }
+        if (data.quantity <= 0) {
           setTimeout(()=>{
-            messageForm([`Añadido el producto: ${data.name}, la cantidad de: ${data.quantity}`])
+            messageForm(['Debe indicar la cantidad del producto'], "alert-danger")
           },100)
-          e.stopImmediatePropagation()
+          return
+        }
+        fn().car.push(data)
+        setTimeout(()=>{
+          messageForm([`Añadido el producto: ${data.name}, la cantidad de: ${data.quantity}`])
+        },100)
+        e.stopImmediatePropagation()
       })
       // @ts-ignore ---> MODAL
       document.getElementById("listProducts").addEventListener("click", e =>{

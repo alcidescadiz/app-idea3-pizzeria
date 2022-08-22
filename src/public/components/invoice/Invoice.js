@@ -71,8 +71,12 @@ export function Invoice([fn]){
         document.getElementById("dateInvoice").innerHTML= `Fecha: ${json.msg[0].date}`
         // @ts-ignore
         document.getElementById("clientInvoice").innerHTML= `Cliente: ${user.name.toUpperCase()}`
-        //let setInvoice = JSON.parse(json.msg[0].details) mysql
-        let setInvoice = json.msg[0].details // postgres
+        let setInvoice
+        if (typeof json.msg[0].details === 'string'){
+            setInvoice = JSON.parse(json.msg[0].details) // mysql
+        }else{
+            setInvoice = json.msg[0].details // postgres
+        }
         listDetailInvoice(setInvoice)
       }
     });

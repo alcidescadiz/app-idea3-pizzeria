@@ -1,4 +1,4 @@
-export function LoginPage([fn,messageForm]){
+export function LoginPage([fn,messageForm, appSesionStorage]){
     let divLogin = document.createElement('div')
 
     let contentLogin = `
@@ -71,12 +71,9 @@ export function LoginPage([fn,messageForm]){
               }
           ).then(res => res.json())
            .then(json => {
-             if(json.msg.length === 1){
-                console.log(json.msg)
+             if(json.msg?.length === 1){
                   fn({status: true, user:json.msg[0]})
-                  //sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, email:json.email, like:json.like, dislike:json.dislike }))
-                  //@ts-ignore: Object is possibly 'null'.
-                  //document.getElementById('formLogin').reset()
+                  appSesionStorage.setSesionStorage({...fn()},"sessionAppPizzeria")
                   window.location.hash= '#user'
                   setTimeout(()=>{
                     messageForm(["Bienvenido a nuestra plataforma"])
