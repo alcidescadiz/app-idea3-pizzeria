@@ -1,4 +1,4 @@
-export function LoginPage([fn]){
+export function LoginPage([fn,messageForm]){
     let divLogin = document.createElement('div')
 
     let contentLogin = `
@@ -71,16 +71,21 @@ export function LoginPage([fn]){
               }
           ).then(res => res.json())
            .then(json => {
-            console.log(json)
-              if(json.msg){
+             if(json.msg.length === 1){
+                console.log(json.msg)
                   fn({status: true, user:json.msg[0]})
                   //sessionStorage.setItem("sessionAppFashion", JSON.stringify({status: true, email:json.email, like:json.like, dislike:json.dislike }))
                   //@ts-ignore: Object is possibly 'null'.
                   //document.getElementById('formLogin').reset()
-                  window.location.hash= '#user'               
-                  console.log(fn())
+                  window.location.hash= '#user'
+                  setTimeout(()=>{
+                    messageForm(["Bienvenido a nuestra plataforma"])
+                  },100)               
               }else{
                   window.location.hash= '#register' 
+                  setTimeout(()=>{
+                    messageForm(["Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
+                  },100)  
               }
           })
           e.stopImmediatePropagation()

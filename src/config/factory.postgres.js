@@ -30,8 +30,7 @@ export async function rowTableForTwoWhere(filds, field1, value1, field2, value2,
 export async function addInvoiceTable({car,id_user,totalList,date},table){
     try {
         let invoice = await pool.query(`INSERT INTO ${table} ( id_user, total, date, details) VALUES (${id_user}, '${totalList}', '${date}','${JSON.stringify(car)}')`)
-        console.log(invoice)
-        return invoice
+        return invoice.rowCount
     } catch (error) {
         console.log(error)
     }
@@ -39,5 +38,5 @@ export async function addInvoiceTable({car,id_user,totalList,date},table){
 
 export async function addUserTable({name,email,password },table){
     let user = await pool.query(`INSERT INTO ${table} ( name, email, password, role) VALUES ( '${name}', '${email}','${password}','client')`)
-    return user
+    return user.rowCount
 }

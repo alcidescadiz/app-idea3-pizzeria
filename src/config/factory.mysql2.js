@@ -21,10 +21,12 @@ export async function rowTableForTwoWhere(filds, field1, value1, field2, value2,
 
 export async function addInvoiceTable({car,id_user,totalList,date},table){
     let [rows,fields] = await cnx.promise().query(`INSERT INTO ${table} (id, id_user, total, date, details) VALUES (NULL, ${id_user}, '${totalList}', '${date}','${JSON.stringify(car)}')`);
-    return rows
+    // @ts-ignore
+    return rows.affectedRows
 }
 
 export async function addUserTable({name,email,password },table){
     let [rows,fields] = await cnx.promise().query(`INSERT INTO ${table} (id, name, email, password, role) VALUES (NULL, '${name}', '${email}','${password}','client')`);
-    return rows
+    // @ts-ignore
+    return rows.affectedRows
 }

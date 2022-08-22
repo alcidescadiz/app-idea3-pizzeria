@@ -21,7 +21,7 @@ CREATE TABLE `test`.`users` (
 CREATE TABLE invoice ( 
     id SERIAL PRIMARY KEY,  
     id_user INT NOT NULL ,  
-    total INT NOT NULL ,  
+    total NUMERIC NOT NULL ,  
     date VARCHAR(100) NOT NULL ,  
     details JSON NOT NULL 
 ) 

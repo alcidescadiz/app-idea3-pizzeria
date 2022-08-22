@@ -1,4 +1,4 @@
-export function CarShop([fn]){
+export function CarShop([fn, messageForm]){
     let {status, car, user} = fn()
     if (status !== true) {
         window.location.hash= '#login'
@@ -70,6 +70,9 @@ export function CarShop([fn]){
                 // @ts-ignore
                 car.splice(e.target.id,1)
                 listCardShop()
+                setTimeout(()=>{
+                    messageForm(['Modificación realizada'], "alert-info")
+                },100)
             }
             e.stopImmediatePropagation()
         })
@@ -80,7 +83,9 @@ export function CarShop([fn]){
                 date: new Intl.DateTimeFormat('es').format(new Date())
             }
             if (dataToConfirm.totalList === 0){
-                alert('No tiene pedidos a realizar')
+                setTimeout(()=>{
+                    messageForm(['No tiene pedidos a realizar'], "alert-info")
+                },100)
                 return
             }
             fetch(window.location.origin + "/v1-api/invoice",{
@@ -94,8 +99,10 @@ export function CarShop([fn]){
             .then((json) => {
               if(json.msg === 1){
                 fn({car:[]})
-                console.log(fn())
                 window.location.hash= '#'
+                setTimeout(()=>{
+                    messageForm(['En minutos su pedido será procesado para confirmarse'])
+                  },100)
               }
             });
         })

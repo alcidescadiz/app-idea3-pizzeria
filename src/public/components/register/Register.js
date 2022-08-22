@@ -1,4 +1,4 @@
-export function Register([fn]){
+export function Register([messageForm]){
     let mainRegister = document.createElement('main')
     //mainRegister.classList.add("container")
     let contentRegister = `
@@ -60,11 +60,15 @@ export function Register([fn]){
                     if(json.msg===1){
                         //@ts-ignore: Object is possibly 'null'.
                         document.getElementById("formRegister").reset()
-                        alert('Ya puede iniciar sesión!!')
                         window.location.hash= '#login'
+                        setTimeout(()=>{
+                          messageForm(["Bienvenido ya puede iniciar sesión"])
+                        },100) 
                     }
                     if(json.error){
-                        alert('Error!!')
+                      setTimeout(()=>{
+                        messageForm([json.error], "alert-danger")
+                      },100) 
                     }
                 })
             e.stopImmediatePropagation()

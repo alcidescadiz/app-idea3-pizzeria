@@ -11,8 +11,8 @@ let Router = () => {
 
     /**
      * @name isLogin
-     * @type {{status:boolean|null,user:object,car:Array<object>,token:string}} */
-    let isLogin = { status: null,user:{}, car : [],token: "" };
+     * @type {{status:boolean|null,user:object,car:Array<object>,token:string, idInvoice:any}} */
+    let isLogin = { status: null,user:{}, car : [],token: "", idInvoice:null };
 
     /**@type {Array<any>} */
     let Routes = [];
@@ -50,8 +50,11 @@ let Router = () => {
           return;
         }
         setTimeout(() => {
+          const formMessage = document.createElement("div")
+          formMessage.id = "form-message"
           // @ts-ignore
           rootDiv.innerHTML = ''
+          rootDiv?.appendChild(formMessage);
           let pathname = window.location.hash;
           if (!Routes.map((e) => e.path).includes(pathname)) {
             rootDiv?.appendChild(Routes[0].template(Routes[0].props))
@@ -125,7 +128,29 @@ let Router = () => {
       },
       destroySesionStorage: ()=> sessionStorage.clear()
     }
-    return {Loading, Route, Render, RenderEvent, PageNotFound, Login, appSesionStorage};
+
+    function messageForm(msgArray = [], type = 'alert-success') { 
+      let msgTemplate = ``
+      msgArray.map(e => {
+        msgTemplate +=`
+        <ul>
+          <li><p><strong>${e}</strong></p></li>
+        </ul>
+        `
+      }) 
+      //@ts-ignore: Object is possibly 'null'.
+      document.getElementById('form-message').innerHTML=`
+      <div class="alert ${type} alert-dismissible fade show fixed-top m-2" role="alert">
+        ${msgTemplate}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      `
+      setTimeout(()=>{
+        //@ts-ignore: Object is possibly 'null'.
+        document.getElementById('form-message').innerHTML=``
+      },5000)
+    }
+    return {Loading, Route, Render, RenderEvent, PageNotFound, Login, appSesionStorage, messageForm};
   };
 
   export default Router

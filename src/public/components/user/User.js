@@ -51,6 +51,17 @@ export function User([fn]){
     </div>
     `
     mainUser.innerHTML = contentUser
-
+    setTimeout(()=>{
+        // @ts-ignore
+        document.getElementById("listInvoiceForUser").addEventListener("click", e=>{
+            // @ts-ignore
+            if (e.target.innerHTML === "View"){
+                // @ts-ignore
+                fn({idInvoice:e.target.id})
+                window.location.hash= '#invoice'
+            }
+            e.stopImmediatePropagation()
+        })
+    },10)
     return mainUser
 }

@@ -112,7 +112,7 @@ let typeProducts = [
 ]
 
 
-export function ListFood([fn]) {
+export function ListFood([fn,messageForm]) {
     let mainList = document.createElement('main')
     mainList.classList.add('categories', "pb-5", "container")
     
@@ -193,7 +193,9 @@ export function ListFood([fn]) {
       document.getElementById("inputAddToCarShop").addEventListener("click", e => {
         if(fn().status !== true){
           window.location.hash= '#login'
-          alert('debe estar registrado para realizar pedidos')
+          setTimeout(()=>{
+            messageForm(['Debe estar registrado para realizar pedidos'], "alert-danger")
+          },100)
           return
         }
           let data = {
@@ -204,6 +206,9 @@ export function ListFood([fn]) {
             quantity: document.getElementById("quantity")?.value
           }
           fn().car.push(data)
+          setTimeout(()=>{
+            messageForm([`Añadido el producto: ${data.name}, la cantidad de: ${data.quantity}`])
+          },100)
           e.stopImmediatePropagation()
       })
       // @ts-ignore ---> MODAL

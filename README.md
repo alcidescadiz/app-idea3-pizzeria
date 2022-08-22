@@ -1,4 +1,4 @@
-# Proyecto #idea3 	Pizzeria de https://idforideas.com/
+# Proyecto Fullstack #idea3 Pizzeria de https://idforideas.com/
 
 ### Tecnologias usadas:
 
@@ -11,7 +11,7 @@ Backend:
 * Jwt
 * bcrypt
 * Uuid
-* MySql
+* MySql -Postgres
 
 Frontend:
 
