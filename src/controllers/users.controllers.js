@@ -28,6 +28,7 @@ export async function createUser(req, res){
 }
 
 export async function verifyLogin(req, res){
+    try {
         let {email, password} =req.body
         let results = await rowTableForTwoWhere('*','email', email, 'password', password,'users')
         console.log(results)
@@ -36,8 +37,12 @@ export async function verifyLogin(req, res){
             const [{id,name, email, role}] = results
             res.cookie("app-pizzeria-token", token, {expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)})
                .status(200)
-               .json({id,name, email, role})
-        }// else {
-        //     res.json({error:["Error en los datos"]})
-        // }
+               .json({msg:{id,name, email, role}})
+            return
+        } else {
+            throw "Error en los datos";
+        }
+    } catch (error) {
+        res.json({error:[error]})
+    }
 }
