@@ -37,8 +37,7 @@ export async function verifyLogin(req, res){
             res.cookie("app-pizzeria-token", token, {expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)})
                .status(200)
                .json({id,name, email, role})
-            return
-        } else {
-            res.json({error:["Error en los datos"]})
-        }
+        }// else {
+        //     res.json({error:["Error en los datos"]})
+        // }
 }
