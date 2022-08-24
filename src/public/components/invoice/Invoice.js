@@ -64,7 +64,6 @@ export function Invoice([fn]){
     .then((res) => res.json())
     .then((json) => {
         if(json.msg.length === 1){
-          console.log(json)
         // @ts-ignore
         document.getElementById("codiceInvoice").innerHTML= `Factura N°: ${json.msg[0].id}`
         // @ts-ignore

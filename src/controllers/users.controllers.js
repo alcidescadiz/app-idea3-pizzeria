@@ -31,7 +31,6 @@ export async function verifyLogin(req, res){
     try {
         let {email, password} =req.body
         let results = await rowTableForTwoWhere('*','email', email, 'password', password,'users')
-        console.log(results, {email, password})
         if (results.length >= 1) {
             const token = jwt.sign(results[0], KEY, { expiresIn: "48h" });
             const [{id,name, email, role}] = results
