@@ -37,7 +37,7 @@ export async function verifyLogin(req, res){
             const [{id,name, email, role}] = results
             res.cookie("app-pizzeria-token", token, {expires: new Date(Date.now() + 60 * 60 * 60 * 24 * 2)})
                .status(200)
-               .json({msg:[{id,name, email, role}]})
+               .json({id,name, email, role})
             return
         } else {
             throw "Error en los datos";
