@@ -69,7 +69,10 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
                 },
                 body: JSON.stringify(data)
               }
-          ).then(res => res.json())
+          ).then(res => {
+            console.log(res)
+            return res.json()
+          })
            .then(json => {
             console.log(json)
              if(json.msg){
