@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
-import {  rowTableForTwoWhere } from "../config/factory.postgres.js";
+import Service from "../config/services.js"
 
 /**@type {string|any} */
 const KEY = process.env.KEY
@@ -18,7 +18,7 @@ export async function Auth(req, res, next){
         })
         // @ts-ignore
         const {email, password} = jwt.verify(variable.token, KEY);
-        const user = await rowTableForTwoWhere('*','email', email, 'password', password, 'users')
+        const user = await Service.rowTableForTwoWhere('*','email', email, 'password', password, 'users')
         if(email === user[0].email && password === user[0].password) next()
         return
     }

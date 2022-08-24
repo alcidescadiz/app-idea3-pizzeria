@@ -1,11 +1,9 @@
-//import { addInvoiceTable, allRowTable, rowTableForId, rowTableForIdUser } from "../config/factory.mysql2.js";
-import { addInvoiceTable, allRowTable, rowTableForId, rowTableForIdUser } from "../config/factory.postgres.js";
-
+import Service from "../config/services.js"
 
 export async function invoiceForId(req, res){
     try {
         let {id} = req.params
-        let results = await rowTableForId(id, 'invoice')
+        let results = await Service.rowTableForId(id, 'invoice')
         res.json({msg:results})
     } catch (error) {
         res.json({error:error})
@@ -15,7 +13,7 @@ export async function invoiceForId(req, res){
 export async function invoiceForUser(req, res){
     try {
         let {id_user} = req.params
-        let results = await rowTableForIdUser(id_user, 'invoice')
+        let results = await Service.rowTableForIdUser(id_user, 'invoice')
         res.json({msg:results})
     } catch (error) {
         res.json({error:error})
@@ -23,7 +21,7 @@ export async function invoiceForUser(req, res){
 }
 export async function allInvoice(req, res){
     try {
-        let results = await allRowTable('invoice')
+        let results = await Service.allRowTable('invoice')
         res.json({msg:results})
     } catch (error) {
         res.json({error:error})
@@ -33,7 +31,7 @@ export async function allInvoice(req, res){
 export async function createInvoice(req, res){
     try {
         let {id_user, totalList,date,details } = req.body 
-        let result = await addInvoiceTable({id_user, totalList,date, details}, 'invoice')
+        let result = await Service.addInvoiceTable({id_user, totalList,date, details}, 'invoice')
         // @ts-ignore
         res.json({msg:result})
     } catch (error) {

@@ -1,5 +1,5 @@
-//@api = http://localhost:3000/v1-api/users
-@api = https://app-pizzeria-mysql.herokuapp.com/v1-api/users
+@api = http://localhost:3000/v1-api/users
+//@api = https://app-pizzeria-mysql.herokuapp.com/v1-api/users
 @token = 
 
 
@@ -17,7 +17,7 @@ x-access-token : {{token}}
     "password":""
 }
 
-### crear usuario
+### login de un usuario
 POST  {{api}}/login
 x-access-token : {{token}}
 content-type: application/json

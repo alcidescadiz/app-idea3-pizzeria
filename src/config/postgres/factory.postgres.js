@@ -1,7 +1,7 @@
 import {pool} from './connect-posgres.js';
 
 
-export async function allRowTable(table){
+async function allRowTable(table){
     try {
         let data = await pool.query(`SELECT * FROM ${table}`)
         return data.rows
@@ -10,15 +10,15 @@ export async function allRowTable(table){
     }
 }
 
-export async function rowTableForIdUser(id_user, table){
+async function rowTableForIdUser(id_user, table){
     let row = await pool.query(`SELECT * FROM ${table} WHERE id_user=${id_user}`)
     return row.rows
 }
-export async function rowTableForId(id, table){
+async function rowTableForId(id, table){
     let row = await pool.query(`SELECT * FROM ${table} WHERE id=${id}`)
     return row.rows
 }
-export async function rowTableForTwoWhere(filds, field1, value1, field2, value2, table){
+async function rowTableForTwoWhere(filds, field1, value1, field2, value2, table){
     try {
         let rows = await pool.query(`SELECT ${filds} FROM ${table} WHERE ${field1}=$1 AND ${field2}=$2`,[value1, value2])
         return rows.rows
@@ -26,8 +26,16 @@ export async function rowTableForTwoWhere(filds, field1, value1, field2, value2,
         return error
     }
 }
+async function rowTableForOneWhere(filds, field1, value1, table){
+    try {
+        let rows = await pool.query(`SELECT ${filds} FROM ${table} WHERE ${field1}=$1`,[value1])
+        return rows.rows
+    } catch (error) {
+        return error
+    }
+}
 
-export async function addInvoiceTable({id_user,totalList,date,details},table){
+async function addInvoiceTable({id_user,totalList,date,details},table){
     try {
         let invoice = await pool.query(`INSERT INTO ${table} ( id_user, total, date, details) VALUES (${id_user}, '${totalList}', '${date}','${details}')`)
         return invoice.rowCount
@@ -36,7 +44,17 @@ export async function addInvoiceTable({id_user,totalList,date,details},table){
     }
 }
 
-export async function addUserTable({name,email,password },table){
+async function addUserTable({name,email,password },table){
     let user = await pool.query(`INSERT INTO ${table} ( name, email, password, role) VALUES ( '${name}', '${email}','${password}','client')`)
     return user.rowCount
+}
+
+export default  {
+    allRowTable,
+    rowTableForIdUser,
+    rowTableForId,
+    rowTableForOneWhere,
+    rowTableForTwoWhere,
+    addInvoiceTable,
+    addUserTable
 }
