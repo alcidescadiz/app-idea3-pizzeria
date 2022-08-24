@@ -25,10 +25,10 @@ let Router = () => {
     let Loading = function(addLoading){loading = addLoading};
 
     /**
-     * @param {{path:string|null, template:function|HTMLDivElement,protect:boolean, props:Array<any>}} param0 
+     * @param {{path:string|null, template:function|HTMLDivElement,protect:boolean, props:Array<any>, title:string|null,}} param0 
      */
-    let Route = function({ path = null, template, protect = false, props = [] }){
-      Routes.push({ path, template, protect, props });
+    let Route = function({ path = null, template, protect = false, props = [], title =null }){
+      Routes.push({ path, template, protect, props, title });
     };
 
     /**
@@ -73,6 +73,7 @@ let Router = () => {
                   rootDiv?.append(e.template([...e.props]));
                 }
               }
+              if (e.title !== null && e.path === pathname) document.title = e.title
             });
           }
         }, 10);

@@ -9,3 +9,9 @@ x-access-token : {{token}}
 ### crear usuario
 POST  {{api}}/
 x-access-token : {{token}}
+
+{
+    "name":"",
+    "email":"",
+    "password":""
+}

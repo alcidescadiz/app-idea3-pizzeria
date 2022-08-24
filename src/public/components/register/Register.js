@@ -67,7 +67,7 @@ export function Register([messageForm]){
                     }
                     if(json.error){
                       setTimeout(()=>{
-                        messageForm([json.error], "alert-danger")
+                        messageForm([...json.error], "alert-danger")
                       },100) 
                     }
                 })

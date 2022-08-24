@@ -27,12 +27,12 @@ export async function rowTableForTwoWhere(filds, field1, value1, field2, value2,
     }
 }
 
-export async function addInvoiceTable({car,id_user,totalList,date},table){
+export async function addInvoiceTable({id_user,totalList,date,details},table){
     try {
-        let invoice = await pool.query(`INSERT INTO ${table} ( id_user, total, date, details) VALUES (${id_user}, '${totalList}', '${date}','${JSON.stringify(car)}')`)
+        let invoice = await pool.query(`INSERT INTO ${table} ( id_user, total, date, details) VALUES (${id_user}, '${totalList}', '${date}','${details}')`)
         return invoice.rowCount
     } catch (error) {
-        console.log(error)
+        return error
     }
 }
 

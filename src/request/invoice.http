@@ -13,3 +13,10 @@ x-access-token : {{token}}
 ### create a invocie
 POST  {{api}}/
 x-access-token : {{token}}
+
+{
+    "id_user":"",
+    "totalList":"",
+    "date":"",
+    "details":""
+}

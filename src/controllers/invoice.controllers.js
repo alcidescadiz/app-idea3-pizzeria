@@ -32,11 +32,11 @@ export async function allInvoice(req, res){
 
 export async function createInvoice(req, res){
     try {
-        let {car,id_user, totalList,date } = req.body 
-        let result = await addInvoiceTable({car,id_user, totalList,date}, 'invoice')
+        let {id_user, totalList,date,details } = req.body 
+        let result = await addInvoiceTable({id_user, totalList,date, details}, 'invoice')
         // @ts-ignore
         res.json({msg:result})
     } catch (error) {
-        res.json({msg:error})
+        res.json({error:[error.message]})
     }
 }

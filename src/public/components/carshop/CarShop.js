@@ -1,6 +1,7 @@
 export function CarShop([fn, messageForm]){
     let {status, car, user} = fn()
     if (status !== true) {
+        console.log('redirigir')
         window.location.hash= '#login'
         return
     }
@@ -78,7 +79,7 @@ export function CarShop([fn, messageForm]){
         })
         document.getElementById("addBuyToConfirm")?.addEventListener("click", e =>{
             let dataToConfirm = {
-                car, totalList: totalList(),
+                details:JSON.stringify(car), totalList: totalList(),
                 id_user: user.id,
                 date: new Intl.DateTimeFormat('es').format(new Date())
             }
@@ -103,6 +104,11 @@ export function CarShop([fn, messageForm]){
                 setTimeout(()=>{
                     messageForm(['En minutos su pedido será procesado para confirmarse'])
                   },100)
+              }
+              if(json.error){
+                setTimeout(()=>{
+                  messageForm([...json.error], "alert-danger")
+                },100) 
               }
             });
         })

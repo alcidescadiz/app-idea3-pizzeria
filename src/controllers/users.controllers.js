@@ -23,7 +23,7 @@ export async function createUser(req, res){
         // @ts-ignore
         res.json({msg:result})
     } catch (error) {
-        res.json({msg:error})
+        res.json({error:[error.message]})
     }
 }
 
