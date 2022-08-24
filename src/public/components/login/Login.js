@@ -63,11 +63,11 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
           }
           fetch(window.location.origin+'/v1-api/users/login',
               {
-                  body: JSON.stringify(data),
-                  method:'POST',
-                  headers:{
-                      'Content-Type': 'application/json'
-                  }
+                method:'POST',
+                headers:{
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
               }
           ).then(res => res.json())
            .then(json => {
@@ -84,7 +84,7 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
               if(json.error){
                 window.location.hash= '#register' 
                 setTimeout(()=>{
-                  messageForm([...json.error, "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
+                  messageForm([json.error[0], "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
                 },100) 
               }
           })
