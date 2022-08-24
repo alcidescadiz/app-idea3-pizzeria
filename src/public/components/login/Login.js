@@ -71,6 +71,7 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
               }
           ).then(res => res.json())
            .then(json => {
+            console.log(json)
              if(json.msg){
                   fn({status: true, user:json.msg[0]})
                   appSesionStorage.setSesionStorage({...fn()},"sessionAppPizzeria")
@@ -82,7 +83,6 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
 
               if(json.error){
                 window.location.hash= '#register' 
-                console.log(...json.error)
                 setTimeout(()=>{
                   messageForm([...json.error, "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
                 },100) 
