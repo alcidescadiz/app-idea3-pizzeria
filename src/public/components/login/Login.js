@@ -71,18 +71,20 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
               }
           ).then(res => res.json())
            .then(json => {
-             if(json.msg?.length === 1){
+             if(json.msg){
                   fn({status: true, user:json.msg[0]})
                   appSesionStorage.setSesionStorage({...fn()},"sessionAppPizzeria")
                   window.location.hash= '#user'
                   setTimeout(()=>{
                     messageForm(["Bienvenido a nuestra plataforma"])
                   },100)               
-              }else{
-                  window.location.hash= '#register' 
-                  setTimeout(()=>{
-                    messageForm(["Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
-                  },100)  
+              }
+
+              if(json.error){
+                window.location.hash= '#register' 
+                setTimeout(()=>{
+                  messageForm([json.error, "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
+                },100) 
               }
           })
           e.stopImmediatePropagation()

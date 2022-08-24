@@ -39,6 +39,6 @@ export async function verifyLogin(req, res){
             throw "Error en los datos";
         }
     } catch (error) {
-        res.json({error:error})
+        res.json({error:[error]})
     }
 }
