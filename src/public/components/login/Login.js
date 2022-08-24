@@ -82,8 +82,9 @@ export function LoginPage([fn,messageForm, appSesionStorage]){
 
               if(json.error){
                 window.location.hash= '#register' 
+                console.log(...json.error)
                 setTimeout(()=>{
-                  messageForm([json.error, "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
+                  messageForm([...json.error, "Ud no esta registrado", "Es posible que su contraseña no sea la correcta"], "alert-danger")
                 },100) 
               }
           })
